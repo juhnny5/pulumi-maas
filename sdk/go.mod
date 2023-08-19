@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-xyz/sdk
+module github.com/juh5nny/pulumi-maas/sdk
 
 go 1.17
 

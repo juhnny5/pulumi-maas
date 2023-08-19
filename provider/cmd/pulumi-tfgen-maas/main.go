@@ -15,8 +15,8 @@
 package main
 
 import (
-	maas "github.com/pulumi/pulumi-maas/provider"
-	"github.com/pulumi/pulumi-maas/provider/pkg/version"
+	maas "github.com/juhnny5/pulumi-maas/provider"
+	"github.com/juhnny5/pulumi-maas/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 )
 
