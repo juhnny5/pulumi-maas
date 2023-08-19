@@ -1,0 +1,2178 @@
+{
+    "name": "maas",
+    "description": "A Pulumi package for creating and managing maas cloud resources.",
+    "keywords": [
+        "pulumi",
+        "maas",
+        "category/cloud"
+    ],
+    "homepage": "https://www.pulumi.com",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`maas` Terraform Provider](https://github.com/terraform-providers/terraform-provider-maas).",
+    "repository": "https://github.com/juhnny5/pulumi-maas",
+    "publisher": "Pulumi",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "language": {
+        "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
+            "compatibility": "tfbridge20"
+        },
+        "go": {
+            "importBasePath": "github.com/pulumi/pulumi-maas/sdk/go/maas",
+            "generateResourceContainerTypes": true,
+            "generateExtraInputTypes": true
+        },
+        "nodejs": {
+            "packageDescription": "A Pulumi package for creating and managing maas cloud resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-maas)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-maas` repo](https://github.com/juhnny5/pulumi-maas/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-maas` repo](https://github.com/terraform-providers/terraform-provider-maas/issues).",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
+        },
+        "python": {
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-maas)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-maas` repo](https://github.com/juhnny5/pulumi-maas/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-maas` repo](https://github.com/terraform-providers/terraform-provider-maas/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
+        }
+    },
+    "config": {
+        "variables": {
+            "apiKey": {
+                "type": "string",
+                "description": "The MAAS API key\n"
+            },
+            "apiUrl": {
+                "type": "string",
+                "description": "The MAAS API URL (eg: http://127.0.0.1:5240/MAAS)\n"
+            },
+            "apiVersion": {
+                "type": "string",
+                "description": "The MAAS API version (default 2.0)\n"
+            }
+        }
+    },
+    "types": {
+        "maas:index/BlockDevicePartition:BlockDevicePartition": {
+            "properties": {
+                "bootable": {
+                    "type": "boolean"
+                },
+                "fsType": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "mountOptions": {
+                    "type": "string"
+                },
+                "mountPoint": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "sizeGigabytes": {
+                    "type": "integer"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "sizeGigabytes"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "path",
+                        "sizeGigabytes"
+                    ]
+                }
+            }
+        },
+        "maas:index/InstanceAllocateParams:InstanceAllocateParams": {
+            "properties": {
+                "hostname": {
+                    "type": "string"
+                },
+                "minCpuCount": {
+                    "type": "integer"
+                },
+                "minMemory": {
+                    "type": "integer"
+                },
+                "pool": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "zone": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "maas:index/InstanceDeployParams:InstanceDeployParams": {
+            "properties": {
+                "distroSeries": {
+                    "type": "string"
+                },
+                "enableHwSync": {
+                    "type": "boolean"
+                },
+                "hweKernel": {
+                    "type": "string"
+                },
+                "userData": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "maas:index/InstanceNetworkInterface:InstanceNetworkInterface": {
+            "properties": {
+                "ipAddress": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "subnetCidr": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "maas:index/SubnetIpRange:SubnetIpRange": {
+            "properties": {
+                "comment": {
+                    "type": "string"
+                },
+                "endIp": {
+                    "type": "string"
+                },
+                "startIp": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "endIp",
+                "startIp",
+                "type"
+            ]
+        },
+        "maas:index/VmHostMachineNetworkInterface:VmHostMachineNetworkInterface": {
+            "properties": {
+                "fabric": {
+                    "type": "string"
+                },
+                "ipAddress": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "subnetCidr": {
+                    "type": "string"
+                },
+                "vlan": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "maas:index/VmHostMachineStorageDisk:VmHostMachineStorageDisk": {
+            "properties": {
+                "pool": {
+                    "type": "string"
+                },
+                "sizeGigabytes": {
+                    "type": "integer"
+                }
+            },
+            "type": "object",
+            "required": [
+                "sizeGigabytes"
+            ]
+        }
+    },
+    "provider": {
+        "description": "The provider type for the maas package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "apiKey": {
+                "type": "string",
+                "description": "The MAAS API key\n"
+            },
+            "apiUrl": {
+                "type": "string",
+                "description": "The MAAS API URL (eg: http://127.0.0.1:5240/MAAS)\n"
+            },
+            "apiVersion": {
+                "type": "string",
+                "description": "The MAAS API version (default 2.0)\n"
+            }
+        },
+        "inputProperties": {
+            "apiKey": {
+                "type": "string",
+                "description": "The MAAS API key\n"
+            },
+            "apiUrl": {
+                "type": "string",
+                "description": "The MAAS API URL (eg: http://127.0.0.1:5240/MAAS)\n"
+            },
+            "apiVersion": {
+                "type": "string",
+                "description": "The MAAS API version (default 2.0)\n"
+            }
+        }
+    },
+    "resources": {
+        "maas:index/blockDevice:BlockDevice": {
+            "properties": {
+                "blockSize": {
+                    "type": "integer",
+                    "description": "The block size of the block device. Defaults to `512`.\n"
+                },
+                "idPath": {
+                    "type": "string",
+                    "description": "Only used if `model` and `serial` cannot be provided. This should be a path that is fixed and doesn't change depending\non the boot order or kernel version. This argument is computed if it's not given.\n"
+                },
+                "isBootDevice": {
+                    "type": "boolean",
+                    "description": "Boolean value indicating if the block device is set as the boot device.\n"
+                },
+                "machine": {
+                    "type": "string",
+                    "description": "The machine identifier (system ID, hostname, or FQDN) that owns the block device.\n"
+                },
+                "model": {
+                    "type": "string",
+                    "description": "Model of the block device. Used in conjunction with `serial` argument. Conflicts with `id_path`. This argument is\ncomputed if it's not given.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The block device name.\n"
+                },
+                "partitions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/maas:index/BlockDevicePartition:BlockDevicePartition"
+                    },
+                    "description": "List of partition resources created for the new block device. Parameters defined below. This argument is processed in\n[attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html). And, it is computed if it's\nnot given.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Block device path.\n"
+                },
+                "serial": {
+                    "type": "string",
+                    "description": "Serial number of the block device. Used in conjunction with `model` argument. Conflicts with `id_path`. This argument is\ncomputed if it's not given.\n"
+                },
+                "sizeGigabytes": {
+                    "type": "integer",
+                    "description": "The size of the block device (given in GB).\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "Block device UUID.\n"
+                }
+            },
+            "required": [
+                "idPath",
+                "machine",
+                "model",
+                "name",
+                "partitions",
+                "path",
+                "serial",
+                "sizeGigabytes",
+                "tags",
+                "uuid"
+            ],
+            "inputProperties": {
+                "blockSize": {
+                    "type": "integer",
+                    "description": "The block size of the block device. Defaults to `512`.\n"
+                },
+                "idPath": {
+                    "type": "string",
+                    "description": "Only used if `model` and `serial` cannot be provided. This should be a path that is fixed and doesn't change depending\non the boot order or kernel version. This argument is computed if it's not given.\n"
+                },
+                "isBootDevice": {
+                    "type": "boolean",
+                    "description": "Boolean value indicating if the block device is set as the boot device.\n"
+                },
+                "machine": {
+                    "type": "string",
+                    "description": "The machine identifier (system ID, hostname, or FQDN) that owns the block device.\n",
+                    "willReplaceOnChanges": true
+                },
+                "model": {
+                    "type": "string",
+                    "description": "Model of the block device. Used in conjunction with `serial` argument. Conflicts with `id_path`. This argument is\ncomputed if it's not given.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The block device name.\n"
+                },
+                "partitions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/maas:index/BlockDevicePartition:BlockDevicePartition"
+                    },
+                    "description": "List of partition resources created for the new block device. Parameters defined below. This argument is processed in\n[attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html). And, it is computed if it's\nnot given.\n"
+                },
+                "serial": {
+                    "type": "string",
+                    "description": "Serial number of the block device. Used in conjunction with `model` argument. Conflicts with `id_path`. This argument is\ncomputed if it's not given.\n"
+                },
+                "sizeGigabytes": {
+                    "type": "integer",
+                    "description": "The size of the block device (given in GB).\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "requiredInputs": [
+                "machine",
+                "sizeGigabytes"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering BlockDevice resources.\n",
+                "properties": {
+                    "blockSize": {
+                        "type": "integer",
+                        "description": "The block size of the block device. Defaults to `512`.\n"
+                    },
+                    "idPath": {
+                        "type": "string",
+                        "description": "Only used if `model` and `serial` cannot be provided. This should be a path that is fixed and doesn't change depending\non the boot order or kernel version. This argument is computed if it's not given.\n"
+                    },
+                    "isBootDevice": {
+                        "type": "boolean",
+                        "description": "Boolean value indicating if the block device is set as the boot device.\n"
+                    },
+                    "machine": {
+                        "type": "string",
+                        "description": "The machine identifier (system ID, hostname, or FQDN) that owns the block device.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "model": {
+                        "type": "string",
+                        "description": "Model of the block device. Used in conjunction with `serial` argument. Conflicts with `id_path`. This argument is\ncomputed if it's not given.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The block device name.\n"
+                    },
+                    "partitions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/maas:index/BlockDevicePartition:BlockDevicePartition"
+                        },
+                        "description": "List of partition resources created for the new block device. Parameters defined below. This argument is processed in\n[attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html). And, it is computed if it's\nnot given.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "Block device path.\n"
+                    },
+                    "serial": {
+                        "type": "string",
+                        "description": "Serial number of the block device. Used in conjunction with `model` argument. Conflicts with `id_path`. This argument is\ncomputed if it's not given.\n"
+                    },
+                    "sizeGigabytes": {
+                        "type": "integer",
+                        "description": "The size of the block device (given in GB).\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "description": "Block device UUID.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/dnsDomain:DnsDomain": {
+            "properties": {
+                "authoritative": {
+                    "type": "boolean",
+                    "description": "Boolean value indicating if the new DNS domain is authoritative. Defaults to `false`.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Boolean value indicating if the new DNS domain will be set as the default in the MAAS environment. Defaults to `false`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the new DNS domain.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "The default TTL for the new DNS domain.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "authoritative": {
+                    "type": "boolean",
+                    "description": "Boolean value indicating if the new DNS domain is authoritative. Defaults to `false`.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Boolean value indicating if the new DNS domain will be set as the default in the MAAS environment. Defaults to `false`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the new DNS domain.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "The default TTL for the new DNS domain.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DnsDomain resources.\n",
+                "properties": {
+                    "authoritative": {
+                        "type": "boolean",
+                        "description": "Boolean value indicating if the new DNS domain is authoritative. Defaults to `false`.\n"
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "Boolean value indicating if the new DNS domain will be set as the default in the MAAS environment. Defaults to `false`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the new DNS domain.\n"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "The default TTL for the new DNS domain.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/dnsRecord:DnsRecord": {
+            "properties": {
+                "data": {
+                    "type": "string",
+                    "description": "The data set for the new DNS record.\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the new DNS record. Used in conjunction with `name`. It conflicts with `fqdn` argument.\n"
+                },
+                "fqdn": {
+                    "type": "string",
+                    "description": "The fully qualified domain name of the new DNS record. This contains the name and the domain of the new DNS record. It\nconflicts with `name` and `domain` arguments.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The new DNS record resource name. Used in conjunction with `domain`. It conflicts with `fqdn` argument.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "The TTL of the new DNS record.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The DNS record type. Valid options are: `A/AAAA`, `CNAME`, `MX`, `NS`, `SRV`, `SSHFP`, `TXT`.\n"
+                }
+            },
+            "required": [
+                "data",
+                "name",
+                "type"
+            ],
+            "inputProperties": {
+                "data": {
+                    "type": "string",
+                    "description": "The data set for the new DNS record.\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the new DNS record. Used in conjunction with `name`. It conflicts with `fqdn` argument.\n"
+                },
+                "fqdn": {
+                    "type": "string",
+                    "description": "The fully qualified domain name of the new DNS record. This contains the name and the domain of the new DNS record. It\nconflicts with `name` and `domain` arguments.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The new DNS record resource name. Used in conjunction with `domain`. It conflicts with `fqdn` argument.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "The TTL of the new DNS record.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The DNS record type. Valid options are: `A/AAAA`, `CNAME`, `MX`, `NS`, `SRV`, `SSHFP`, `TXT`.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "data",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DnsRecord resources.\n",
+                "properties": {
+                    "data": {
+                        "type": "string",
+                        "description": "The data set for the new DNS record.\n"
+                    },
+                    "domain": {
+                        "type": "string",
+                        "description": "The domain of the new DNS record. Used in conjunction with `name`. It conflicts with `fqdn` argument.\n"
+                    },
+                    "fqdn": {
+                        "type": "string",
+                        "description": "The fully qualified domain name of the new DNS record. This contains the name and the domain of the new DNS record. It\nconflicts with `name` and `domain` arguments.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The new DNS record resource name. Used in conjunction with `domain`. It conflicts with `fqdn` argument.\n"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "The TTL of the new DNS record.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The DNS record type. Valid options are: `A/AAAA`, `CNAME`, `MX`, `NS`, `SRV`, `SSHFP`, `TXT`.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/fabric:Fabric": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The fabric name.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The fabric name.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Fabric resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The fabric name.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/instance:Instance": {
+            "properties": {
+                "allocateParams": {
+                    "$ref": "#/types/maas:index/InstanceAllocateParams:InstanceAllocateParams",
+                    "description": "Nested argument with the constraints used to machine allocation. Defined below.\n"
+                },
+                "cpuCount": {
+                    "type": "integer",
+                    "description": "The number of CPU cores of the deployed MAAS machine.\n"
+                },
+                "deployParams": {
+                    "$ref": "#/types/maas:index/InstanceDeployParams:InstanceDeployParams",
+                    "description": "Nested argument with the config used to deploy the allocated machine. Defined below.\n"
+                },
+                "fqdn": {
+                    "type": "string",
+                    "description": "The deployed MAAS machine FQDN.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The deployed MAAS machine hostname.\n"
+                },
+                "ipAddresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of IP addressed assigned to the deployed MAAS machine.\n"
+                },
+                "memory": {
+                    "type": "integer",
+                    "description": "The RAM memory size (in GiB) of the deployed MAAS machine.\n"
+                },
+                "networkInterfaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/maas:index/InstanceNetworkInterface:InstanceNetworkInterface"
+                    },
+                    "description": "Specifies a network interface configuration done before the machine is deployed. Parameters defined below. This argument\nis processed in [attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n"
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The deployed MAAS machine pool name.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of tag names associated to the deployed MAAS machine.\n"
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "The deployed MAAS machine zone name.\n"
+                }
+            },
+            "required": [
+                "cpuCount",
+                "fqdn",
+                "hostname",
+                "ipAddresses",
+                "memory",
+                "pool",
+                "tags",
+                "zone"
+            ],
+            "inputProperties": {
+                "allocateParams": {
+                    "$ref": "#/types/maas:index/InstanceAllocateParams:InstanceAllocateParams",
+                    "description": "Nested argument with the constraints used to machine allocation. Defined below.\n",
+                    "willReplaceOnChanges": true
+                },
+                "deployParams": {
+                    "$ref": "#/types/maas:index/InstanceDeployParams:InstanceDeployParams",
+                    "description": "Nested argument with the config used to deploy the allocated machine. Defined below.\n",
+                    "willReplaceOnChanges": true
+                },
+                "networkInterfaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/maas:index/InstanceNetworkInterface:InstanceNetworkInterface"
+                    },
+                    "description": "Specifies a network interface configuration done before the machine is deployed. Parameters defined below. This argument\nis processed in [attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Instance resources.\n",
+                "properties": {
+                    "allocateParams": {
+                        "$ref": "#/types/maas:index/InstanceAllocateParams:InstanceAllocateParams",
+                        "description": "Nested argument with the constraints used to machine allocation. Defined below.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "cpuCount": {
+                        "type": "integer",
+                        "description": "The number of CPU cores of the deployed MAAS machine.\n"
+                    },
+                    "deployParams": {
+                        "$ref": "#/types/maas:index/InstanceDeployParams:InstanceDeployParams",
+                        "description": "Nested argument with the config used to deploy the allocated machine. Defined below.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "fqdn": {
+                        "type": "string",
+                        "description": "The deployed MAAS machine FQDN.\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "The deployed MAAS machine hostname.\n"
+                    },
+                    "ipAddresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A set of IP addressed assigned to the deployed MAAS machine.\n"
+                    },
+                    "memory": {
+                        "type": "integer",
+                        "description": "The RAM memory size (in GiB) of the deployed MAAS machine.\n"
+                    },
+                    "networkInterfaces": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/maas:index/InstanceNetworkInterface:InstanceNetworkInterface"
+                        },
+                        "description": "Specifies a network interface configuration done before the machine is deployed. Parameters defined below. This argument\nis processed in [attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "pool": {
+                        "type": "string",
+                        "description": "The deployed MAAS machine pool name.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A set of tag names associated to the deployed MAAS machine.\n"
+                    },
+                    "zone": {
+                        "type": "string",
+                        "description": "The deployed MAAS machine zone name.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/machine:Machine": {
+            "properties": {
+                "architecture": {
+                    "type": "string",
+                    "description": "The architecture type of the machine. Defaults to `amd64/generic`.\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the machine. This is computed if it's not set.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The machine hostname. This is computed if it's not set.\n"
+                },
+                "minHweKernel": {
+                    "type": "string",
+                    "description": "The minimum kernel version allowed to run on this machine. Only used when deploying Ubuntu. This is computed if it's not\nset.\n"
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The resource pool of the machine. This is computed if it's not set.\n"
+                },
+                "powerParameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A map with the parameters specific to the `power_type`. See [Power types](https://maas.io/docs/api#power-types) section\nfor a list of the available power parameters for each power type.\n",
+                    "secret": true
+                },
+                "powerType": {
+                    "type": "string",
+                    "description": "A power management type (e.g. `ipmi`).\n"
+                },
+                "pxeMacAddress": {
+                    "type": "string",
+                    "description": "The MAC address of the machine's PXE boot NIC.\n"
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "The zone of the machine. This is computed if it's not set.\n"
+                }
+            },
+            "required": [
+                "domain",
+                "hostname",
+                "minHweKernel",
+                "pool",
+                "powerParameters",
+                "powerType",
+                "pxeMacAddress",
+                "zone"
+            ],
+            "inputProperties": {
+                "architecture": {
+                    "type": "string",
+                    "description": "The architecture type of the machine. Defaults to `amd64/generic`.\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The domain of the machine. This is computed if it's not set.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The machine hostname. This is computed if it's not set.\n"
+                },
+                "minHweKernel": {
+                    "type": "string",
+                    "description": "The minimum kernel version allowed to run on this machine. Only used when deploying Ubuntu. This is computed if it's not\nset.\n"
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The resource pool of the machine. This is computed if it's not set.\n"
+                },
+                "powerParameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A map with the parameters specific to the `power_type`. See [Power types](https://maas.io/docs/api#power-types) section\nfor a list of the available power parameters for each power type.\n",
+                    "secret": true
+                },
+                "powerType": {
+                    "type": "string",
+                    "description": "A power management type (e.g. `ipmi`).\n"
+                },
+                "pxeMacAddress": {
+                    "type": "string",
+                    "description": "The MAC address of the machine's PXE boot NIC.\n"
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "The zone of the machine. This is computed if it's not set.\n"
+                }
+            },
+            "requiredInputs": [
+                "powerParameters",
+                "powerType",
+                "pxeMacAddress"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Machine resources.\n",
+                "properties": {
+                    "architecture": {
+                        "type": "string",
+                        "description": "The architecture type of the machine. Defaults to `amd64/generic`.\n"
+                    },
+                    "domain": {
+                        "type": "string",
+                        "description": "The domain of the machine. This is computed if it's not set.\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "The machine hostname. This is computed if it's not set.\n"
+                    },
+                    "minHweKernel": {
+                        "type": "string",
+                        "description": "The minimum kernel version allowed to run on this machine. Only used when deploying Ubuntu. This is computed if it's not\nset.\n"
+                    },
+                    "pool": {
+                        "type": "string",
+                        "description": "The resource pool of the machine. This is computed if it's not set.\n"
+                    },
+                    "powerParameters": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A map with the parameters specific to the `power_type`. See [Power types](https://maas.io/docs/api#power-types) section\nfor a list of the available power parameters for each power type.\n",
+                        "secret": true
+                    },
+                    "powerType": {
+                        "type": "string",
+                        "description": "A power management type (e.g. `ipmi`).\n"
+                    },
+                    "pxeMacAddress": {
+                        "type": "string",
+                        "description": "The MAC address of the machine's PXE boot NIC.\n"
+                    },
+                    "zone": {
+                        "type": "string",
+                        "description": "The zone of the machine. This is computed if it's not set.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/networkInterfaceLink:NetworkInterfaceLink": {
+            "properties": {
+                "defaultGateway": {
+                    "type": "boolean",
+                    "description": "Boolean value. When enabled, it sets the subnet gateway IP address as the default gateway for the machine the interface\nbelongs to. This option can only be used with the `AUTO` and `STATIC` modes. Defaults to `false`.\n"
+                },
+                "ipAddress": {
+                    "type": "string",
+                    "description": "Valid IP address (from the given subnet) to be configured on the network interface. Only used when `mode` is set to\n`STATIC`.\n"
+                },
+                "machine": {
+                    "type": "string",
+                    "description": "The identifier (system ID, hostname, or FQDN) of the machine with the network interface.\n"
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "Connection mode to subnet. It defaults to `AUTO`. Valid options are: * `AUTO` - Random static IP address from the\nsubnet. * `DHCP` - IP address from the DHCP on the given subnet. * `STATIC` - Use `ip_address` as static IP address. *\n`LINK_UP` - Bring the interface up only on the given subnet. No IP address will be assigned.\n"
+                },
+                "networkInterface": {
+                    "type": "string",
+                    "description": "The identifier (MAC address, name, or ID) of the network interface.\n"
+                },
+                "subnet": {
+                    "type": "string",
+                    "description": "The identifier (CIDR or ID) of the subnet to be connected.\n"
+                }
+            },
+            "required": [
+                "ipAddress",
+                "machine",
+                "networkInterface",
+                "subnet"
+            ],
+            "inputProperties": {
+                "defaultGateway": {
+                    "type": "boolean",
+                    "description": "Boolean value. When enabled, it sets the subnet gateway IP address as the default gateway for the machine the interface\nbelongs to. This option can only be used with the `AUTO` and `STATIC` modes. Defaults to `false`.\n"
+                },
+                "ipAddress": {
+                    "type": "string",
+                    "description": "Valid IP address (from the given subnet) to be configured on the network interface. Only used when `mode` is set to\n`STATIC`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "machine": {
+                    "type": "string",
+                    "description": "The identifier (system ID, hostname, or FQDN) of the machine with the network interface.\n",
+                    "willReplaceOnChanges": true
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "Connection mode to subnet. It defaults to `AUTO`. Valid options are: * `AUTO` - Random static IP address from the\nsubnet. * `DHCP` - IP address from the DHCP on the given subnet. * `STATIC` - Use `ip_address` as static IP address. *\n`LINK_UP` - Bring the interface up only on the given subnet. No IP address will be assigned.\n",
+                    "willReplaceOnChanges": true
+                },
+                "networkInterface": {
+                    "type": "string",
+                    "description": "The identifier (MAC address, name, or ID) of the network interface.\n",
+                    "willReplaceOnChanges": true
+                },
+                "subnet": {
+                    "type": "string",
+                    "description": "The identifier (CIDR or ID) of the subnet to be connected.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "machine",
+                "networkInterface",
+                "subnet"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering NetworkInterfaceLink resources.\n",
+                "properties": {
+                    "defaultGateway": {
+                        "type": "boolean",
+                        "description": "Boolean value. When enabled, it sets the subnet gateway IP address as the default gateway for the machine the interface\nbelongs to. This option can only be used with the `AUTO` and `STATIC` modes. Defaults to `false`.\n"
+                    },
+                    "ipAddress": {
+                        "type": "string",
+                        "description": "Valid IP address (from the given subnet) to be configured on the network interface. Only used when `mode` is set to\n`STATIC`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "machine": {
+                        "type": "string",
+                        "description": "The identifier (system ID, hostname, or FQDN) of the machine with the network interface.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "mode": {
+                        "type": "string",
+                        "description": "Connection mode to subnet. It defaults to `AUTO`. Valid options are: * `AUTO` - Random static IP address from the\nsubnet. * `DHCP` - IP address from the DHCP on the given subnet. * `STATIC` - Use `ip_address` as static IP address. *\n`LINK_UP` - Bring the interface up only on the given subnet. No IP address will be assigned.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "networkInterface": {
+                        "type": "string",
+                        "description": "The identifier (MAC address, name, or ID) of the network interface.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "subnet": {
+                        "type": "string",
+                        "description": "The identifier (CIDR or ID) of the subnet to be connected.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/networkInterfacePhysical:NetworkInterfacePhysical": {
+            "properties": {
+                "macAddress": {
+                    "type": "string",
+                    "description": "The physical network interface MAC address.\n"
+                },
+                "machine": {
+                    "type": "string",
+                    "description": "The identifier (system ID, hostname, or FQDN) of the machine with the physical network interface.\n"
+                },
+                "mtu": {
+                    "type": "integer",
+                    "description": "The MTU of the physical network interface. This argument is computed if it's not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The physical network interface name. This argument is computed if it's not set.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of tag names to be assigned to the physical network interface. This argument is computed if it's not set.\n"
+                },
+                "vlan": {
+                    "type": "string",
+                    "description": "VLAN the physical network interface is connected to. Defaults to `untagged`.\n"
+                }
+            },
+            "required": [
+                "macAddress",
+                "machine",
+                "mtu",
+                "name",
+                "tags"
+            ],
+            "inputProperties": {
+                "macAddress": {
+                    "type": "string",
+                    "description": "The physical network interface MAC address.\n",
+                    "willReplaceOnChanges": true
+                },
+                "machine": {
+                    "type": "string",
+                    "description": "The identifier (system ID, hostname, or FQDN) of the machine with the physical network interface.\n",
+                    "willReplaceOnChanges": true
+                },
+                "mtu": {
+                    "type": "integer",
+                    "description": "The MTU of the physical network interface. This argument is computed if it's not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The physical network interface name. This argument is computed if it's not set.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of tag names to be assigned to the physical network interface. This argument is computed if it's not set.\n"
+                },
+                "vlan": {
+                    "type": "string",
+                    "description": "VLAN the physical network interface is connected to. Defaults to `untagged`.\n"
+                }
+            },
+            "requiredInputs": [
+                "macAddress",
+                "machine"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering NetworkInterfacePhysical resources.\n",
+                "properties": {
+                    "macAddress": {
+                        "type": "string",
+                        "description": "The physical network interface MAC address.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "machine": {
+                        "type": "string",
+                        "description": "The identifier (system ID, hostname, or FQDN) of the machine with the physical network interface.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "mtu": {
+                        "type": "integer",
+                        "description": "The MTU of the physical network interface. This argument is computed if it's not set.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The physical network interface name. This argument is computed if it's not set.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A set of tag names to be assigned to the physical network interface. This argument is computed if it's not set.\n"
+                    },
+                    "vlan": {
+                        "type": "string",
+                        "description": "VLAN the physical network interface is connected to. Defaults to `untagged`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/space:Space": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the new space.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the new space.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Space resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the new space.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/subnet:Subnet": {
+            "properties": {
+                "allowDns": {
+                    "type": "boolean",
+                    "description": "Boolean value that indicates if the MAAS DNS resolution is enabled for this subnet. Defaults to `true`.\n"
+                },
+                "allowProxy": {
+                    "type": "boolean",
+                    "description": "Boolean value that indicates if `maas-proxy` allows requests from this subnet. Defaults to `true`.\n"
+                },
+                "cidr": {
+                    "type": "string",
+                    "description": "The subnet CIDR.\n"
+                },
+                "dnsServers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of IP addresses set as DNS servers for the new subnet. This argument is computed if it's not set.\n"
+                },
+                "fabric": {
+                    "type": "string",
+                    "description": "The fabric identifier (ID or name) for the new subnet.\n"
+                },
+                "gatewayIp": {
+                    "type": "string",
+                    "description": "Gateway IP address for the new subnet. This argument is computed if it's not set.\n"
+                },
+                "ipRanges": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/maas:index/SubnetIpRange:SubnetIpRange"
+                    },
+                    "description": "A set of IP ranges configured on the new subnet. Parameters defined below. This argument is processed in\n[attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The subnet name.\n"
+                },
+                "rdnsMode": {
+                    "type": "integer",
+                    "description": "How reverse DNS is handled for this subnet. Defaults to `2`. Valid options are: * `0` - Disabled, no reverse zone is\ncreated. * `1` - Enabled, generate reverse zone. * `2` - RFC2317, extends `1` to create the necessary parent zone with\nthe appropriate CNAME resource records for the network, if the network is small enough to require the support described\nin RFC2317.\n"
+                },
+                "vlan": {
+                    "type": "string",
+                    "description": "The VLAN identifier (ID or traffic segregation ID) for the new subnet. If this is set, the `fabric` argument is\nrequired.\n"
+                }
+            },
+            "required": [
+                "cidr",
+                "dnsServers",
+                "gatewayIp",
+                "name"
+            ],
+            "inputProperties": {
+                "allowDns": {
+                    "type": "boolean",
+                    "description": "Boolean value that indicates if the MAAS DNS resolution is enabled for this subnet. Defaults to `true`.\n"
+                },
+                "allowProxy": {
+                    "type": "boolean",
+                    "description": "Boolean value that indicates if `maas-proxy` allows requests from this subnet. Defaults to `true`.\n"
+                },
+                "cidr": {
+                    "type": "string",
+                    "description": "The subnet CIDR.\n"
+                },
+                "dnsServers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of IP addresses set as DNS servers for the new subnet. This argument is computed if it's not set.\n"
+                },
+                "fabric": {
+                    "type": "string",
+                    "description": "The fabric identifier (ID or name) for the new subnet.\n"
+                },
+                "gatewayIp": {
+                    "type": "string",
+                    "description": "Gateway IP address for the new subnet. This argument is computed if it's not set.\n"
+                },
+                "ipRanges": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/maas:index/SubnetIpRange:SubnetIpRange"
+                    },
+                    "description": "A set of IP ranges configured on the new subnet. Parameters defined below. This argument is processed in\n[attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The subnet name.\n"
+                },
+                "rdnsMode": {
+                    "type": "integer",
+                    "description": "How reverse DNS is handled for this subnet. Defaults to `2`. Valid options are: * `0` - Disabled, no reverse zone is\ncreated. * `1` - Enabled, generate reverse zone. * `2` - RFC2317, extends `1` to create the necessary parent zone with\nthe appropriate CNAME resource records for the network, if the network is small enough to require the support described\nin RFC2317.\n"
+                },
+                "vlan": {
+                    "type": "string",
+                    "description": "The VLAN identifier (ID or traffic segregation ID) for the new subnet. If this is set, the `fabric` argument is\nrequired.\n"
+                }
+            },
+            "requiredInputs": [
+                "cidr"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Subnet resources.\n",
+                "properties": {
+                    "allowDns": {
+                        "type": "boolean",
+                        "description": "Boolean value that indicates if the MAAS DNS resolution is enabled for this subnet. Defaults to `true`.\n"
+                    },
+                    "allowProxy": {
+                        "type": "boolean",
+                        "description": "Boolean value that indicates if `maas-proxy` allows requests from this subnet. Defaults to `true`.\n"
+                    },
+                    "cidr": {
+                        "type": "string",
+                        "description": "The subnet CIDR.\n"
+                    },
+                    "dnsServers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of IP addresses set as DNS servers for the new subnet. This argument is computed if it's not set.\n"
+                    },
+                    "fabric": {
+                        "type": "string",
+                        "description": "The fabric identifier (ID or name) for the new subnet.\n"
+                    },
+                    "gatewayIp": {
+                        "type": "string",
+                        "description": "Gateway IP address for the new subnet. This argument is computed if it's not set.\n"
+                    },
+                    "ipRanges": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/maas:index/SubnetIpRange:SubnetIpRange"
+                        },
+                        "description": "A set of IP ranges configured on the new subnet. Parameters defined below. This argument is processed in\n[attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The subnet name.\n"
+                    },
+                    "rdnsMode": {
+                        "type": "integer",
+                        "description": "How reverse DNS is handled for this subnet. Defaults to `2`. Valid options are: * `0` - Disabled, no reverse zone is\ncreated. * `1` - Enabled, generate reverse zone. * `2` - RFC2317, extends `1` to create the necessary parent zone with\nthe appropriate CNAME resource records for the network, if the network is small enough to require the support described\nin RFC2317.\n"
+                    },
+                    "vlan": {
+                        "type": "string",
+                        "description": "The VLAN identifier (ID or traffic segregation ID) for the new subnet. If this is set, the `fabric` argument is\nrequired.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/subnetIpRange:SubnetIpRange": {
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "A description of this range. This argument is computed if it's not set.\n"
+                },
+                "endIp": {
+                    "type": "string",
+                    "description": "The end IP for the new IP range (inclusive).\n"
+                },
+                "startIp": {
+                    "type": "string",
+                    "description": "The start IP for the new IP range (inclusive).\n"
+                },
+                "subnet": {
+                    "type": "string",
+                    "description": "The subnet identifier (ID or CIDR) for the new IP range.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The IP range type. Valid options are: `dynamic`, `reserved`.\n"
+                }
+            },
+            "required": [
+                "comment",
+                "endIp",
+                "startIp",
+                "subnet",
+                "type"
+            ],
+            "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "A description of this range. This argument is computed if it's not set.\n"
+                },
+                "endIp": {
+                    "type": "string",
+                    "description": "The end IP for the new IP range (inclusive).\n"
+                },
+                "startIp": {
+                    "type": "string",
+                    "description": "The start IP for the new IP range (inclusive).\n"
+                },
+                "subnet": {
+                    "type": "string",
+                    "description": "The subnet identifier (ID or CIDR) for the new IP range.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The IP range type. Valid options are: `dynamic`, `reserved`.\n"
+                }
+            },
+            "requiredInputs": [
+                "endIp",
+                "startIp",
+                "subnet",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SubnetIpRange resources.\n",
+                "properties": {
+                    "comment": {
+                        "type": "string",
+                        "description": "A description of this range. This argument is computed if it's not set.\n"
+                    },
+                    "endIp": {
+                        "type": "string",
+                        "description": "The end IP for the new IP range (inclusive).\n"
+                    },
+                    "startIp": {
+                        "type": "string",
+                        "description": "The start IP for the new IP range (inclusive).\n"
+                    },
+                    "subnet": {
+                        "type": "string",
+                        "description": "The subnet identifier (ID or CIDR) for the new IP range.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The IP range type. Valid options are: `dynamic`, `reserved`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/tag:Tag": {
+            "properties": {
+                "machines": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of MAAS machines' identifiers (system ID, hostname, or FQDN) that will be tagged with the new tag.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The new tag name. Because the name will be used in urls, it should be short.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "machines": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of MAAS machines' identifiers (system ID, hostname, or FQDN) that will be tagged with the new tag.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The new tag name. Because the name will be used in urls, it should be short.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Tag resources.\n",
+                "properties": {
+                    "machines": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of MAAS machines' identifiers (system ID, hostname, or FQDN) that will be tagged with the new tag.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The new tag name. Because the name will be used in urls, it should be short.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/user:User": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "The user e-mail address.\n"
+                },
+                "isAdmin": {
+                    "type": "boolean",
+                    "description": "Boolean value indicating if the user is a MAAS administrator. Defaults to `false`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The user name.\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The user password.\n",
+                    "secret": true
+                }
+            },
+            "required": [
+                "email",
+                "name",
+                "password"
+            ],
+            "inputProperties": {
+                "email": {
+                    "type": "string",
+                    "description": "The user e-mail address.\n",
+                    "willReplaceOnChanges": true
+                },
+                "isAdmin": {
+                    "type": "boolean",
+                    "description": "Boolean value indicating if the user is a MAAS administrator. Defaults to `false`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The user name.\n",
+                    "willReplaceOnChanges": true
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The user password.\n",
+                    "secret": true,
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "email",
+                "password"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering User resources.\n",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "The user e-mail address.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "isAdmin": {
+                        "type": "boolean",
+                        "description": "Boolean value indicating if the user is a MAAS administrator. Defaults to `false`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The user name.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "The user password.\n",
+                        "secret": true,
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/vlan:Vlan": {
+            "properties": {
+                "dhcpOn": {
+                    "type": "boolean",
+                    "description": "Boolean value. Whether or not DHCP should be managed on the new VLAN. This argument is computed if it's not set.\n"
+                },
+                "fabric": {
+                    "type": "string",
+                    "description": "The identifier (name or ID) of the fabric for the new VLAN.\n"
+                },
+                "mtu": {
+                    "type": "integer",
+                    "description": "The MTU to use on the new VLAN. This argument is computed if it's not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the new VLAN. This argument is computed if it's not set.\n"
+                },
+                "space": {
+                    "type": "string",
+                    "description": "The space of the new VLAN. Passing in an empty string (or the string `undefined`) will cause the VLAN to be placed in\nthe `undefined` space. This argument is computed if it's not set.\n"
+                },
+                "vid": {
+                    "type": "integer",
+                    "description": "The traffic segregation ID for the new VLAN.\n"
+                }
+            },
+            "required": [
+                "dhcpOn",
+                "fabric",
+                "mtu",
+                "name",
+                "space",
+                "vid"
+            ],
+            "inputProperties": {
+                "dhcpOn": {
+                    "type": "boolean",
+                    "description": "Boolean value. Whether or not DHCP should be managed on the new VLAN. This argument is computed if it's not set.\n"
+                },
+                "fabric": {
+                    "type": "string",
+                    "description": "The identifier (name or ID) of the fabric for the new VLAN.\n",
+                    "willReplaceOnChanges": true
+                },
+                "mtu": {
+                    "type": "integer",
+                    "description": "The MTU to use on the new VLAN. This argument is computed if it's not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the new VLAN. This argument is computed if it's not set.\n"
+                },
+                "space": {
+                    "type": "string",
+                    "description": "The space of the new VLAN. Passing in an empty string (or the string `undefined`) will cause the VLAN to be placed in\nthe `undefined` space. This argument is computed if it's not set.\n"
+                },
+                "vid": {
+                    "type": "integer",
+                    "description": "The traffic segregation ID for the new VLAN.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "fabric",
+                "vid"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Vlan resources.\n",
+                "properties": {
+                    "dhcpOn": {
+                        "type": "boolean",
+                        "description": "Boolean value. Whether or not DHCP should be managed on the new VLAN. This argument is computed if it's not set.\n"
+                    },
+                    "fabric": {
+                        "type": "string",
+                        "description": "The identifier (name or ID) of the fabric for the new VLAN.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "mtu": {
+                        "type": "integer",
+                        "description": "The MTU to use on the new VLAN. This argument is computed if it's not set.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the new VLAN. This argument is computed if it's not set.\n"
+                    },
+                    "space": {
+                        "type": "string",
+                        "description": "The space of the new VLAN. Passing in an empty string (or the string `undefined`) will cause the VLAN to be placed in\nthe `undefined` space. This argument is computed if it's not set.\n"
+                    },
+                    "vid": {
+                        "type": "integer",
+                        "description": "The traffic segregation ID for the new VLAN.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/vmHost:VmHost": {
+            "properties": {
+                "cpuOverCommitRatio": {
+                    "type": "number",
+                    "description": "The new VM host CPU overcommit ratio. This is computed if it's not set.\n"
+                },
+                "defaultMacvlanMode": {
+                    "type": "string",
+                    "description": "The new VM host default macvlan mode. Supported values are: `bridge`, `passthru`, `private`, `vepa`. This is computed if\nit's not set.\n"
+                },
+                "machine": {
+                    "type": "string",
+                    "description": "The identifier (hostname, FQDN or system ID) of a registered ready MAAS machine. This is going to be deployed and\nregistered as a new VM host. This argument conflicts with: `power_address`, `power_user`, `power_pass`.\n"
+                },
+                "memoryOverCommitRatio": {
+                    "type": "number",
+                    "description": "The new VM host RAM memory overcommit ratio. This is computed if it's not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The new VM host name. This is computed if it's not set.\n"
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The new VM host pool name. This is computed if it's not set.\n"
+                },
+                "powerAddress": {
+                    "type": "string",
+                    "description": "Address that gives MAAS access to the VM host power control. For example: `qemu+ssh://172.16.99.2/system`. The address\ngiven here must reachable by the MAAS server. It can't be set if `machine` argument is used.\n"
+                },
+                "powerPass": {
+                    "type": "string",
+                    "description": "User password to use for power control of the VM host. Cannot be set if `machine` parameter is used.\n",
+                    "secret": true
+                },
+                "powerUser": {
+                    "type": "string",
+                    "description": "User name to use for power control of the VM host. Cannot be set if `machine` parameter is used.\n"
+                },
+                "resourcesCoresTotal": {
+                    "type": "integer",
+                    "description": "The VM host total number of CPU cores.\n"
+                },
+                "resourcesLocalStorageTotal": {
+                    "type": "integer",
+                    "description": "The VM host total local storage (in bytes).\n"
+                },
+                "resourcesMemoryTotal": {
+                    "type": "integer",
+                    "description": "The VM host total RAM memory (in MB).\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of tag names to assign to the new VM host. This is computed if it's not set.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The VM host type. Supported values are: `lxd`, `virsh`.\n"
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "The new VM host zone name. This is computed if it's not set.\n"
+                }
+            },
+            "required": [
+                "cpuOverCommitRatio",
+                "defaultMacvlanMode",
+                "memoryOverCommitRatio",
+                "name",
+                "pool",
+                "resourcesCoresTotal",
+                "resourcesLocalStorageTotal",
+                "resourcesMemoryTotal",
+                "tags",
+                "type",
+                "zone"
+            ],
+            "inputProperties": {
+                "cpuOverCommitRatio": {
+                    "type": "number",
+                    "description": "The new VM host CPU overcommit ratio. This is computed if it's not set.\n"
+                },
+                "defaultMacvlanMode": {
+                    "type": "string",
+                    "description": "The new VM host default macvlan mode. Supported values are: `bridge`, `passthru`, `private`, `vepa`. This is computed if\nit's not set.\n"
+                },
+                "machine": {
+                    "type": "string",
+                    "description": "The identifier (hostname, FQDN or system ID) of a registered ready MAAS machine. This is going to be deployed and\nregistered as a new VM host. This argument conflicts with: `power_address`, `power_user`, `power_pass`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "memoryOverCommitRatio": {
+                    "type": "number",
+                    "description": "The new VM host RAM memory overcommit ratio. This is computed if it's not set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The new VM host name. This is computed if it's not set.\n"
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The new VM host pool name. This is computed if it's not set.\n"
+                },
+                "powerAddress": {
+                    "type": "string",
+                    "description": "Address that gives MAAS access to the VM host power control. For example: `qemu+ssh://172.16.99.2/system`. The address\ngiven here must reachable by the MAAS server. It can't be set if `machine` argument is used.\n"
+                },
+                "powerPass": {
+                    "type": "string",
+                    "description": "User password to use for power control of the VM host. Cannot be set if `machine` parameter is used.\n",
+                    "secret": true
+                },
+                "powerUser": {
+                    "type": "string",
+                    "description": "User name to use for power control of the VM host. Cannot be set if `machine` parameter is used.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of tag names to assign to the new VM host. This is computed if it's not set.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The VM host type. Supported values are: `lxd`, `virsh`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "The new VM host zone name. This is computed if it's not set.\n"
+                }
+            },
+            "requiredInputs": [
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering VmHost resources.\n",
+                "properties": {
+                    "cpuOverCommitRatio": {
+                        "type": "number",
+                        "description": "The new VM host CPU overcommit ratio. This is computed if it's not set.\n"
+                    },
+                    "defaultMacvlanMode": {
+                        "type": "string",
+                        "description": "The new VM host default macvlan mode. Supported values are: `bridge`, `passthru`, `private`, `vepa`. This is computed if\nit's not set.\n"
+                    },
+                    "machine": {
+                        "type": "string",
+                        "description": "The identifier (hostname, FQDN or system ID) of a registered ready MAAS machine. This is going to be deployed and\nregistered as a new VM host. This argument conflicts with: `power_address`, `power_user`, `power_pass`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "memoryOverCommitRatio": {
+                        "type": "number",
+                        "description": "The new VM host RAM memory overcommit ratio. This is computed if it's not set.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The new VM host name. This is computed if it's not set.\n"
+                    },
+                    "pool": {
+                        "type": "string",
+                        "description": "The new VM host pool name. This is computed if it's not set.\n"
+                    },
+                    "powerAddress": {
+                        "type": "string",
+                        "description": "Address that gives MAAS access to the VM host power control. For example: `qemu+ssh://172.16.99.2/system`. The address\ngiven here must reachable by the MAAS server. It can't be set if `machine` argument is used.\n"
+                    },
+                    "powerPass": {
+                        "type": "string",
+                        "description": "User password to use for power control of the VM host. Cannot be set if `machine` parameter is used.\n",
+                        "secret": true
+                    },
+                    "powerUser": {
+                        "type": "string",
+                        "description": "User name to use for power control of the VM host. Cannot be set if `machine` parameter is used.\n"
+                    },
+                    "resourcesCoresTotal": {
+                        "type": "integer",
+                        "description": "The VM host total number of CPU cores.\n"
+                    },
+                    "resourcesLocalStorageTotal": {
+                        "type": "integer",
+                        "description": "The VM host total local storage (in bytes).\n"
+                    },
+                    "resourcesMemoryTotal": {
+                        "type": "integer",
+                        "description": "The VM host total RAM memory (in MB).\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A set of tag names to assign to the new VM host. This is computed if it's not set.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The VM host type. Supported values are: `lxd`, `virsh`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "zone": {
+                        "type": "string",
+                        "description": "The new VM host zone name. This is computed if it's not set.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "maas:index/vmHostMachine:VmHostMachine": {
+            "properties": {
+                "cores": {
+                    "type": "integer",
+                    "description": "The number of CPU cores (defaults to 1).\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The VM host machine domain. This is computed if it's not set.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The VM host machine hostname. This is computed if it's not set.\n"
+                },
+                "memory": {
+                    "type": "integer",
+                    "description": "The VM host machine RAM memory, specified in MB (defaults to 2048).\n"
+                },
+                "networkInterfaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/maas:index/VmHostMachineNetworkInterface:VmHostMachineNetworkInterface"
+                    },
+                    "description": "A list of network interfaces for new the VM host. This argument only works when the VM host is deployed from a\nregistered MAAS machine. Parameters defined below. This argument is processed in [attribute-as-blocks\nmode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n"
+                },
+                "pinnedCores": {
+                    "type": "integer",
+                    "description": "List of host CPU cores to pin the VM host machine to. If this is passed, the `cores` parameter is ignored.\n"
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The VM host machine pool. This is computed if it's not set.\n"
+                },
+                "storageDisks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/maas:index/VmHostMachineStorageDisk:VmHostMachineStorageDisk"
+                    },
+                    "description": "A list of storage disks for the new VM host. Parameters defined below. This argument is processed in\n[attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n"
+                },
+                "vmHost": {
+                    "type": "string",
+                    "description": "ID or name of the VM host used to compose the new machine.\n"
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "The VM host machine zone. This is computed if it's not set.\n"
+                }
+            },
+            "required": [
+                "domain",
+                "hostname",
+                "pool",
+                "vmHost",
+                "zone"
+            ],
+            "inputProperties": {
+                "cores": {
+                    "type": "integer",
+                    "description": "The number of CPU cores (defaults to 1).\n",
+                    "willReplaceOnChanges": true
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "The VM host machine domain. This is computed if it's not set.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The VM host machine hostname. This is computed if it's not set.\n"
+                },
+                "memory": {
+                    "type": "integer",
+                    "description": "The VM host machine RAM memory, specified in MB (defaults to 2048).\n",
+                    "willReplaceOnChanges": true
+                },
+                "networkInterfaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/maas:index/VmHostMachineNetworkInterface:VmHostMachineNetworkInterface"
+                    },
+                    "description": "A list of network interfaces for new the VM host. This argument only works when the VM host is deployed from a\nregistered MAAS machine. Parameters defined below. This argument is processed in [attribute-as-blocks\nmode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n",
+                    "willReplaceOnChanges": true
+                },
+                "pinnedCores": {
+                    "type": "integer",
+                    "description": "List of host CPU cores to pin the VM host machine to. If this is passed, the `cores` parameter is ignored.\n",
+                    "willReplaceOnChanges": true
+                },
+                "pool": {
+                    "type": "string",
+                    "description": "The VM host machine pool. This is computed if it's not set.\n"
+                },
+                "storageDisks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/maas:index/VmHostMachineStorageDisk:VmHostMachineStorageDisk"
+                    },
+                    "description": "A list of storage disks for the new VM host. Parameters defined below. This argument is processed in\n[attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n",
+                    "willReplaceOnChanges": true
+                },
+                "vmHost": {
+                    "type": "string",
+                    "description": "ID or name of the VM host used to compose the new machine.\n",
+                    "willReplaceOnChanges": true
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "The VM host machine zone. This is computed if it's not set.\n"
+                }
+            },
+            "requiredInputs": [
+                "vmHost"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering VmHostMachine resources.\n",
+                "properties": {
+                    "cores": {
+                        "type": "integer",
+                        "description": "The number of CPU cores (defaults to 1).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "domain": {
+                        "type": "string",
+                        "description": "The VM host machine domain. This is computed if it's not set.\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "The VM host machine hostname. This is computed if it's not set.\n"
+                    },
+                    "memory": {
+                        "type": "integer",
+                        "description": "The VM host machine RAM memory, specified in MB (defaults to 2048).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "networkInterfaces": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/maas:index/VmHostMachineNetworkInterface:VmHostMachineNetworkInterface"
+                        },
+                        "description": "A list of network interfaces for new the VM host. This argument only works when the VM host is deployed from a\nregistered MAAS machine. Parameters defined below. This argument is processed in [attribute-as-blocks\nmode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "pinnedCores": {
+                        "type": "integer",
+                        "description": "List of host CPU cores to pin the VM host machine to. If this is passed, the `cores` parameter is ignored.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "pool": {
+                        "type": "string",
+                        "description": "The VM host machine pool. This is computed if it's not set.\n"
+                    },
+                    "storageDisks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/maas:index/VmHostMachineStorageDisk:VmHostMachineStorageDisk"
+                        },
+                        "description": "A list of storage disks for the new VM host. Parameters defined below. This argument is processed in\n[attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "vmHost": {
+                        "type": "string",
+                        "description": "ID or name of the VM host used to compose the new machine.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "zone": {
+                        "type": "string",
+                        "description": "The VM host machine zone. This is computed if it's not set.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "maas:index/getFabric:getFabric": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getFabric.\n",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getFabric.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "id"
+                ]
+            }
+        },
+        "maas:index/getSubnet:getSubnet": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getSubnet.\n",
+                "properties": {
+                    "cidr": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cidr"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSubnet.\n",
+                "properties": {
+                    "allowDns": {
+                        "type": "boolean"
+                    },
+                    "allowProxy": {
+                        "type": "boolean"
+                    },
+                    "cidr": {
+                        "type": "string"
+                    },
+                    "dnsServers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "fabric": {
+                        "type": "string"
+                    },
+                    "gatewayIp": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "rdnsMode": {
+                        "type": "integer"
+                    },
+                    "vid": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "allowDns",
+                    "allowProxy",
+                    "cidr",
+                    "dnsServers",
+                    "fabric",
+                    "gatewayIp",
+                    "name",
+                    "rdnsMode",
+                    "vid",
+                    "id"
+                ]
+            }
+        },
+        "maas:index/getVlan:getVlan": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getVlan.\n",
+                "properties": {
+                    "fabric": {
+                        "type": "string"
+                    },
+                    "vlan": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "fabric",
+                    "vlan"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVlan.\n",
+                "properties": {
+                    "dhcpOn": {
+                        "type": "boolean"
+                    },
+                    "fabric": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "mtu": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "space": {
+                        "type": "string"
+                    },
+                    "vlan": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "dhcpOn",
+                    "fabric",
+                    "mtu",
+                    "name",
+                    "space",
+                    "vlan",
+                    "id"
+                ]
+            }
+        }
+    }
+}
