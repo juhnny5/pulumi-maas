@@ -1,6 +1,7 @@
 {
     "name": "maas",
-    "description": "A Pulumi package for creating and managing maas cloud resources.",
+    "displayName": "MAAS",
+    "description": "A Pulumi package for creating and managing Canonical Metal-As-A-Service (MAAS) resources.",
     "keywords": [
         "pulumi",
         "maas",
@@ -8,9 +9,10 @@
     ],
     "homepage": "https://www.pulumi.com",
     "license": "Apache-2.0",
-    "attribution": "This Pulumi package is based on the [`maas` Terraform Provider](https://github.com/terraform-providers/terraform-provider-maas).",
+    "attribution": "This Pulumi package is based on the [`maas` Terraform Provider](https://github.com/juhnny5/terraform-provider-maas).",
     "repository": "https://github.com/juhnny5/pulumi-maas",
-    "publisher": "Pulumi",
+    "pluginDownloadURL": "https://github.com/juhnny5/pulumi-maas/releases/download/v${VERSION}",
+    "publisher": "Julien Briault",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
@@ -22,13 +24,13 @@
             "compatibility": "tfbridge20"
         },
         "go": {
-            "importBasePath": "github.com/pulumi/pulumi-maas/sdk/go/maas",
+            "importBasePath": "github.com/juhnny5/pulumi-maas/sdk/go/maas",
             "generateResourceContainerTypes": true,
             "generateExtraInputTypes": true
         },
         "nodejs": {
-            "packageDescription": "A Pulumi package for creating and managing maas cloud resources.",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-maas)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-maas` repo](https://github.com/juhnny5/pulumi-maas/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-maas` repo](https://github.com/terraform-providers/terraform-provider-maas/issues).",
+            "packageDescription": "A Pulumi package for creating and managing Canonical Metal-As-A-Service (MAAS) resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/juhnny5/terraform-provider-maas)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-maas` repo](https://github.com/juhnny5/pulumi-maas/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-maas` repo](https://github.com/juhnny5/terraform-provider-maas/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
@@ -40,10 +42,11 @@
             "disableUnionOutputTypes": true
         },
         "python": {
+            "packageName": "pulumi-maas",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             },
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-maas)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-maas` repo](https://github.com/juhnny5/pulumi-maas/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-maas` repo](https://github.com/terraform-providers/terraform-provider-maas/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/juhnny5/terraform-provider-maas)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-maas` repo](https://github.com/juhnny5/pulumi-maas/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-maas` repo](https://github.com/juhnny5/terraform-provider-maas/issues).",
             "compatibility": "tfbridge20",
             "pyproject": {}
         }
