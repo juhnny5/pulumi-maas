@@ -4,5 +4,5 @@
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumi_maas
+pip install pulumi-maas
 ```
